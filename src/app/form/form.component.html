@@ -1,0 +1,73 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div>
+    <label for="name">ชื่อ</label>
+    <div>
+      <input type="text" formControlName="name" id="name" appInputTh />
+    </div>
+    <div *ngIf="form.controls['name'].errors && form.controls['name'].touched">
+      <span class="error-form">กรุณากรอกฟิลด์นี้ด้วยภาษาไทย</span>
+    </div>
+  </div>
+  <div>
+    <label for="lastName">นามสกุล</label>
+    <div>
+      <input type="text" formControlName="lastName" id="lastName" appInputTh />
+    </div>
+    <div
+      *ngIf="
+        form.controls['lastName'].errors && form.controls['lastName'].touched
+      "
+    >
+      <span class="error-form">กรุณากรอกฟิลด์นี้ด้วยภาษาไทย</span>
+    </div>
+  </div>
+  <div>
+    <label for="date">วันเดือนปีเกิด</label>
+    <div>
+      <input type="date" formControlName="dateOfbirth" id="date" />
+    </div>
+    <div
+      *ngIf="
+        form.controls['dateOfbirth'].errors &&
+        form.controls['dateOfbirth'].touched
+      "
+    >
+      <span class="error-form">กรุณากรอกฟิลด์นี้</span>
+    </div>
+  </div>
+  <div>
+    <label for="sex">เพศ</label>
+    <div>
+      <select name="cars" formControlName="sex" id="cars">
+        <option value="ชาย">ชาย</option>
+        <option value="หญิง">หญิง</option>
+      </select>
+    </div>
+    <div *ngIf="form.controls['sex'].errors && form.controls['sex'].touched">
+      <span class="error-form">กรุณากรอกฟิลด์นี้</span>
+    </div>
+  </div>
+  <div>
+    <label for="tel">เบอร์โทรศัพท์</label>
+    <div>
+      <input
+        type="tel"
+        maxlength="10"
+        formControlName="tel"
+        id="tel"
+        appNumberInput
+      />
+    </div>
+    <div *ngIf="form.controls['tel'].errors && form.controls['tel'].touched">
+      <span class="error-form">เบอร์โทรศัพท์ควรมีอย่างน้อย 10</span>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" (click)="onSubmit()">ยืนยัน</button>
+  </div>
+</form>
+
+<ng-container *ngIf="form.controls['dateOfbirth'].value">
+  อายุ {{ form.controls['dateOfbirth'].value | age }} ปี
+</ng-container>
